@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <style>
+        .flex-grid {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        .flex-grid .col {
+            height: 92px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        @media screen and (min-width: 600px) {
+            .flex-grid .col {
+                width: 48%;
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            .flex-grid .col {
+                width: 32%;
+            }
+        }
+        .col button {
+            height: 100%;
+        }
+        .glyphicon {
+            font-size: 40px;
+        }
+        
+        .dir-name {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 85%;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="flex-grid">
+            <div class="col">
+                <a href="{{parent}}" class="folder">
+                    <button type="button" class="btn btn-lg btn-block">
+                        <span class="glyphicon glyphicon-chevron-left"/></span>
+                        <span class="dir-name">Back</span>
+                    </button>
+                </a>
+            </div>
+            {{#each folders}}
+                <div class="col">
+                    <a href="{{path}}" class="folder" title="{{file}}">
+                        <button type="button" class="btn btn-lg btn-block">
+                            <span class="glyphicon glyphicon-folder-open"/></span>
+                            <span class="dir-name">{{file}}</span>
+                        </button>
+                    </a>
+                </div>
+            {{/each}}
+            
+           
+            {{#each videos}}
+                <div class="col">
+                    <a href="/watch?path={{path}}&file={{file}}&parent={{../title}}" class="folder" title="{{file}}">
+                        <button type="button" class="btn btn-lg btn-block">
+                            <span class="glyphicon glyphicon-film"/></span>
+                            <span class="dir-name">{{file}}</span>
+                        </button>
+                    </a>
+                </div>
+            {{/each}}
+            
+        </div>
+    </div>
+</body>
+</html>
