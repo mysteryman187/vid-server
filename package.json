@@ -1,6 +1,6 @@
 {
   "name": "vid-server",
-  "version": "1.0.21",
+  "version": "2.0.0",
   "description": "Browse your video collection remotely and watch in browser in html5 video",
   "scripts": {
     "start": "node bin/vid-server"
@@ -13,9 +13,13 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "commander": "^2.12.1",
+    "connect": "^3.6.5",
+    "ffmpeg-downloader": "^1.1.2",
+    "fluent-ffmpeg": "^2.1.2",
     "handlebars": "4.0.11",
     "node-static": "0.7.10",
     "qs": "^6.5.1",
+    "qs-middleware": "^1.0.3",
     "uri-js": "^3.0.2"
   }
 }

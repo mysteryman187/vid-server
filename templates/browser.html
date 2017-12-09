@@ -14,7 +14,7 @@
             flex-wrap: wrap;
         }
         .flex-grid .col {
-            height: 92px;
+            height: 150px;
             margin-top: 10px;
             width: 100%;
         }
@@ -31,6 +31,9 @@
         }
         .col button {
             height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
         .glyphicon {
             font-size: 40px;
@@ -42,6 +45,9 @@
             white-space: nowrap;
             width: 85%;
             display: inline-block;
+        }
+        img.preview{
+            height: 100px;
         }
     </style>
 </head>
@@ -74,6 +80,7 @@
                     <a href="/watch?path={{path}}&file={{file}}&parent={{../title}}" class="folder" title="{{file}}">
                         <button type="button" class="btn btn-lg btn-block">
                             <span class="glyphicon glyphicon-film"/></span>
+                            <span><img class="preview" src="/preview?path={{path}}"></img></span>
                             <span class="dir-name">{{file}}</span>
                         </button>
                     </a>
