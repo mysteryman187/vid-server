@@ -18,7 +18,7 @@ module.exports = (dir) => new Promise((resolve, reject) => {
                             file,
                             path: path.substring(1, path.length),
                             dir: stat.isDirectory(),
-                            video: isVideo(file)
+                            video: !stat.isDirectory() && isVideo(file)
                          });
                      }
                  });
