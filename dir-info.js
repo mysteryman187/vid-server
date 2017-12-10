@@ -15,8 +15,8 @@ module.exports = (dir) => new Promise((resolve, reject) => {
                          reject(err);
                      } else {
                          resolve({
-                            file,
-                            path: path.substring(1, path.length),
+                            file: encodeURIComponent(file),
+                            path: encodeURIComponent(path.substring(1, path.length)),
                             dir: stat.isDirectory(),
                             video: !stat.isDirectory() && isVideo(file)
                          });

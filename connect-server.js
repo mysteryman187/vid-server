@@ -102,6 +102,10 @@ app.use((request, response) => {
             folders,
             parent
         });
+    })
+    .catch(err => {
+        response.statusCode = 404;
+        response.end();
     });
 });
 

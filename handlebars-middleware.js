@@ -2,6 +2,10 @@ const Handlebars = require('handlebars');;
 const fs = require('fs')
 const path = require('path');
 
+Handlebars.registerHelper('uriDecode', function(value) {
+    return decodeURIComponent(value);
+});
+
 module.exports = options => {
     const templates = options.templates.map((template) => {
         const templateKey = path.parse(template).name;
