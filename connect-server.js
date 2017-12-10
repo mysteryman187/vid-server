@@ -91,7 +91,7 @@ app.use('/streams', function (request, resp) {
 // browser page
 app.use((request, response) => {
     const url  = decodeURIComponent(request.url);
-    const dir = './' + url.substring(1, url.length);
+    const dir = '.' + url; // url.substring(1, url.length);
     console.log('browser service', dir);
     dirInfo(dir)
     .then(({videos, folders}) => {
