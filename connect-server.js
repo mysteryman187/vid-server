@@ -16,24 +16,24 @@ const handlebarsMiddleware = require('./handlebars-middleware');
 const staticMiddleware = require('./node-static-middleware');
 const dirInfo = require('./dir-info');
 var app = connect();
-let f = 0;
-app.use((req, resp, next) => {
-    f++;
-    console.log(req.url, f);
-    resp.on('close', () => {
-        f--;
-        console.log('inFlight=', f);
-    });
-    resp.on('closed', () => {
-        f--;
-        console.log('inFlight=', f);
-    });
-    resp.on('finish', () => {
-        f--;
-        console.log('inFlight=', f);
-    });
-    next();
-})
+// let f = 0;
+// app.use((req, resp, next) => {
+//     f++;
+//     console.log(req.url, f);
+//     resp.on('close', () => {
+//         f--;
+//         console.log('inFlight=', f);
+//     });
+//     resp.on('closed', () => {
+//         f--;
+//         console.log('inFlight=', f);
+//     });
+//     resp.on('finish', () => {
+//         f--;
+//         console.log('inFlight=', f);
+//     });
+//     next();
+// })
 app.use(query());
 app.use(handlebarsMiddleware({
     templates: [
