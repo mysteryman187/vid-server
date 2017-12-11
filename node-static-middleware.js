@@ -6,6 +6,8 @@ module.exports = options => {
         fileServer.serve(request, response, (err) => {
             if(err && err.status === 404) {
                 next();
+            } else {
+                response.end();
             }
         });
     };

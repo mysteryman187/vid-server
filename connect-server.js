@@ -16,6 +16,24 @@ const handlebarsMiddleware = require('./handlebars-middleware');
 const staticMiddleware = require('./node-static-middleware');
 const dirInfo = require('./dir-info');
 var app = connect();
+let f = 0;
+app.use((req, resp, next) => {
+    f++;
+    console.log(req.url, f);
+    resp.on('close', () => {
+        f--;
+        console.log('inFlight=', f);
+    });
+    resp.on('closed', () => {
+        f--;
+        console.log('inFlight=', f);
+    });
+    resp.on('finish', () => {
+        f--;
+        console.log('inFlight=', f);
+    });
+    next();
+})
 app.use(query());
 app.use(handlebarsMiddleware({
     templates: [
@@ -42,12 +60,12 @@ app.use('/watch', (request, response) => {
 });
 
 const { spawn } = require('child_process');
-app.use('/streams', function (request, resp) {
+app.use('/streams', function (request, response) {
     const query = request.query;
     
     console.log('stream file', query.path);
 
-    resp.writeHead(200, {
+    response.writeHead(200, {
          "Connection": "keep-alive",
          "Content-Type": "video/mp4",
          "Accept-Ranges": "bytes",
@@ -59,7 +77,7 @@ app.use('/streams', function (request, resp) {
          "-reset_timestamps", "1", "-vsync", "1","-flags", "global_header", "-bsf:v", "dump_extra", "-y", "-"   // output to stdout
     ], {detached: false});
 
-    ffmpeg.stdout.pipe(resp);
+    ffmpeg.stdout.pipe(response);
 
     ffmpeg.stdout.on("data",function(data) {
         //console.log(data);
@@ -76,8 +94,18 @@ app.use('/streams', function (request, resp) {
     });
 
      //TODO: Stream is only shut when the browser has exited, so switching screens in the client app does not kill the session
+    // response.on("close", function () {
+    //     console.log("resp close");
+    //     ffmpeg.kill();
+    // });
+
+    //  response.on("finish", function () {
+    //     console.log("resp finish");
+    //     ffmpeg.kill();
+    // });
+
     request.on("close", function () {
-        console.log("req closed")
+        console.log("req closed");
         ffmpeg.kill();
     });
     

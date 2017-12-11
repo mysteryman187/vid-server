@@ -10,8 +10,9 @@ A simple http server and file browser with html5 video player to watch your vide
 
 ## Options
 
-    -p, --port <n>             the port to listen to for incoming HTTP connections
+    -p, --port <n>  the port to listen to for incoming HTTP connections
 
+## Screens
 
 ![desktop screen](https://github.com/mysteryman187/vid-server/blob/master/screens/desktop.PNG?raw=true "Desktop")
 ![mobile screen](https://github.com/mysteryman187/vid-server/blob/master/screens/mobile.PNG?raw=true "Mobile")
