@@ -1,6 +1,8 @@
 
 # vid-server
-A simple http server and file browser with html5 video player to watch your video collection on your home network. Any files already compatible with html5 video will be streamed to the client via the 'node-static' module. If a file is not compatible with html5 video it will be transcodeed on the fly using ffmpeg and the result is streamed to the client. ffmpeg is auto installed as part of npm-install so everything works out of the box!
+A simple http server and file browser with html5 video player to watch your video collection either remotely or on your home network from any browser. Use it to watch media files stored on you PC via a browser on your smart TV or blu-ray player. Or open up your home firewall and access your media remotely.
+
+Any files already compatible with html5 video will be streamed to the client via the 'node-static' module. If a file is not compatible with html5 video it will be transcodeed on the fly using ffmpeg and the result is streamed to the client. ffmpeg is auto installed as part of npm-install so everything works out of the box!
 
 ## Getting started
 * [Install node.js](http://nodejs.org/download/)
