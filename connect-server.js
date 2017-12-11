@@ -63,7 +63,8 @@ const { spawn } = require('child_process');
 app.use('/streams', function (request, response) {
     const query = request.query;
     
-    console.log('stream file', query.path);
+    const path = query.path;
+    console.log('------------stream file', path);
 
     response.writeHead(200, {
          "Connection": "keep-alive",
@@ -73,7 +74,7 @@ app.use('/streams', function (request, response) {
         'Expires': '0'
     });
     const ffmpeg = spawn(ffmpegPath, [
-         "-i", `.${query.path}`, "-vcodec", "libx264", "-f", "mp4", "-movflags", "frag_keyframe+empty_moov", 
+         "-i", `.${path}`, "-vcodec", "libx264", "-f", "mp4", "-movflags", "frag_keyframe+empty_moov", 
          "-reset_timestamps", "1", "-vsync", "1","-flags", "global_header", "-bsf:v", "dump_extra", "-y", "-"   // output to stdout
     ], {detached: false});
 
@@ -115,7 +116,9 @@ app.use('/streams', function (request, response) {
     });
 });
 
+;
 
+const clean = require('./clean-path');
 // browser page
 app.use((request, response) => {
     const url  = decodeURIComponent(request.url);
@@ -123,15 +126,16 @@ app.use((request, response) => {
     console.log('browser service', dir);
     dirInfo(dir)
     .then(({videos, folders}) => {
-        const parent = dir.substring(1, dir.lastIndexOf('/')) || '/';
+        const parent = clean(dir.substring(1, dir.lastIndexOf('/')) || '/');
         response.renderTemplate('browser', {
-            title: dir,
+            title: clean(dir),
             videos,
             folders,
             parent
         });
     })
     .catch(err => {
+        console.error(err);
         response.statusCode = 404;
         response.end();
     });

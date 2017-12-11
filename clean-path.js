@@ -1,0 +1,1 @@
+module.exports = p => p.split('/').map(part => encodeURIComponent(part)).join('/');

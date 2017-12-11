@@ -10,7 +10,7 @@
   },
   "author": "",
   "license": "ISC",
-   "repository": {
+  "repository": {
     "type": "git",
     "url": "git://github.com/mysteryman187/vid-server.git"
   },

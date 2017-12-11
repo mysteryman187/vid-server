@@ -30,11 +30,11 @@
 
 <body>
     <div class="container-fluid">
-        <a href="{{parent}}"><button type="button" class="btn btn-lg">Back</button></a>
+        <a href="{{cleanPath parent}}"><button type="button" class="btn btn-lg">Back</button></a>
         <h1>{{file}}</h3>
          <video controls>
-                <!--<source src="{{uriDecode path}}" type="video/mp4">-->
-                <source src="/streams?path={{uriDecode path}}" type="video/mp4">
+                <source src="{{path}}" type="video/mp4">
+                <source src="/streams?path={{uriEncode path}}" type="video/mp4">
          </video>
     </div> 
 </body>

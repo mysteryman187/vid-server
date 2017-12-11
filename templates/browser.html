@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>{{title}}</title>
+    <title>{{uriDecode title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css"/>
     <style>
@@ -65,7 +65,7 @@
             </div>
             {{#each folders}}
                 <div class="col">
-                    <a href="{{uriDecode path}}" class="folder" title="{{file}}">
+                    <a href="{{path}}" class="folder" title="{{uriDecode file}}">
                         <button type="button" class="btn btn-lg btn-block">
                             <span class="glyphicon glyphicon-folder-open"/></span>
                             <span class="dir-name">{{uriDecode file}}</span>

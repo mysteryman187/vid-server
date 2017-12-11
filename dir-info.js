@@ -2,6 +2,8 @@
 const fs = require('fs');
 const isVideo = fileName => fileName.match(/\.(mkv|avi|mpg|mpeg|mp4)$/);
 
+const clean = require('./clean-path');
+
 module.exports = (dir) => new Promise((resolve, reject) => {
      fs.readdir(dir, function(err, files){
          if(err){
@@ -15,8 +17,8 @@ module.exports = (dir) => new Promise((resolve, reject) => {
                          reject(err);
                      } else {
                          resolve({
-                            file: encodeURIComponent(file),
-                            path: encodeURIComponent(path.substring(1, path.length)),
+                            file: clean(file),
+                            path: clean(path.substring(1, path.length)),
                             dir: stat.isDirectory(),
                             video: !stat.isDirectory() && isVideo(file)
                          });

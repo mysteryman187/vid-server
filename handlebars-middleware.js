@@ -1,10 +1,20 @@
 const Handlebars = require('handlebars');;
 const fs = require('fs')
 const path = require('path');
+const clean = require('./clean-path');
 
 Handlebars.registerHelper('uriDecode', function(value) {
     return decodeURIComponent(value);
 });
+
+Handlebars.registerHelper('uriEncode', function(value) {
+    return encodeURIComponent(value);
+});
+
+Handlebars.registerHelper('cleanPath', function(value) {
+    return clean(value);
+});
+
 
 module.exports = options => {
     const templates = options.templates.map((template) => {
